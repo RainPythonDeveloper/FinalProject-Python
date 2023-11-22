@@ -1,2 +1,2 @@
 # FinalProject-Python
-Seidaliev Nurbek, Absattarov Aiber, Dzhunusov Erlan
+Seidaliev Nurbek, Absattarov Aibar, Dzhunusov Erlan
