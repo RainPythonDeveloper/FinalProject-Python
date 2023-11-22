@@ -81,16 +81,16 @@
                     <li class="header__notify-item header__notify-item--viewed">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433"
+                          src="https://new.technodom.kz/under/black-friday-td-2023/hero-logo-desktop.png"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю должен быть автор уведомления</span
+                            >Black Friday Распродажа по-крупному! Скидки до <b>-60%</b></span
                           >
                           <span class="header__notify-description"
-                            >Тут содержимое уведомления</span
+                            >15.11-27.11</span
                           >
                         </div>
                       </a>
@@ -98,17 +98,17 @@
                     <li class="header__notify-item">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433"
+                          src="https://cs11.livemaster.ru/storage/topicavatar/600x450/97/5e/e7255758eb1dabe5e9be0423f911b6f54641du.jpg?h=PNajulFsui3uS65lU9DI_g"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю должен быть автор уведомления
+                            >11.11 Всемирный день шопинга! Не упусти шанс купить по хорошей цене! <b>Скидки до 90%</b>
                            </span
                           >
                           <span class="header__notify-description"
-                            >Тут содержимое уведомления
+                            >11.11
                             </span
                           >
                         </div>
@@ -117,16 +117,16 @@
                     <li class="header__notify-item">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433"
+                          src="https://img.freepik.com/free-psd/3d-sales-discount-price-tag-for-composition-10-percent_314999-2110.jpg"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю можно сделать содержимое уведомления</span
+                            >Мы дарим вам купон на <b>-10%</b> за любую первую покупку!</span
                           >
                           <span class="header__notify-description"
-                            >А тут до какого срока это длится по типу купона 11-13/12/2019</span
+                            >11-13/12/2023</span
                           >
                         </div>
                       </a>
@@ -152,18 +152,21 @@
               <li class="header__navbar-item header__navbar-item--strong">
                 Đăng Nhập
               </li> -->
+              {% if session.authenticated %}
+              
               <li class="header__navbar-item header__navbar-user">
                 <img
                   src="{{ url_for('static', filename='img/user_avatar.png') }}"
                   alt=""
                   class="header__navbar-user-img"
                 />
+                <!-- <li><a class="header__navbar-user-name" href="{{ url_for('user_page', user_id=session.uid)}}">{{session.username | capitalize}}</a></li> -->
                 <span class="header__navbar-user-name">
-                  Nurbek777
+                  {{session.username | capitalize}}
                 </span>
                 <ul class="header__navbar-user-menu">
                   <li class="header__navbar-user-item">
-                    <a href="">Менің профилім</a>
+                    <a href="{{ url_for('user_page', user_id=session.uid)}}">Менің профилім</a>
                   </li>
                   <li class="header__navbar-user-item">
                     <a href="">Мекенжай</a>
@@ -171,19 +174,17 @@
                   <li class="header__navbar-user-item">
                     <a href="">Менің тапсырыстарым</a>
                   </li>
-                  <li class="header__navbar-user-item">
-                    <a href="./register">Регистрация</a>
-                  </li>
-                  <li class="header__navbar-user-item">
-                    <a href="./login">Войти</a>
-                  </li>
                   <li
                     class="header__navbar-user-item header__navbar-user-item--separate"
                   >
-                    <a href="" style="color: red;">Шығу</a>
+                  <a class="nav-link scrollto" href="{{ url_for('logout')}}" style="color: red;">Шығу</a>
                   </li>
                 </ul>
               </li>
+              {% else %}
+              <li class="header__navbar-item header__navbar-user"><a href="./login" class="header__navbar-item header__navbar-user" style="text-decoration: none;">Войти</a></li>
+              <li class="header__navbar-item header__navbar-user"><a href="./register" class="header__navbar-item header__navbar-user" style="text-decoration: none;">Регистрация</a></li>
+              {% endif %}
             </ul>
           </nav>
 
@@ -275,7 +276,7 @@
                   <h4 class="header__cart-heading">Қосылған өнімдер</h4>
                   <!-- Cart item -->
                   <ul class="header__cart-list-item">
-                    <li class="header__cart-item">
+                    <!-- <li class="header__cart-item">
                       <img
                         src="{{ url_for('static', filename='img/mac.jpg') }}"
                         alt=""
@@ -436,8 +437,9 @@
                           <span class="header__cart-item-remove">Жою</span>
                         </div>
                       </div>
-                    </li>
+                    </li> -->
                   </ul>
+                  <div class="total"></div>
                   <a href="#" class="header__cart-view-cart btn btn--primary"
                     >Шолу сөмкесі</a
                   >
@@ -472,13 +474,13 @@
                 </h3>
                 <ul class="category-list">
                   <li class="category-item category-item--active">
-                    <a href="#" class="category-item__link">Бүгінгі таңда танымал</a>
+                    <a href="/" class="category-item__link">Бүгінгі таңда танымал</a>
                   </li>
                   <li class="category-item">
-                    <a href="#" class="category-item__link">Ай үшін танымал</a>
+                    <a href="chapterAY.html" class="category-item__link">Ай үшін танымал</a>
                   </li>
                   <li class="category-item">
-                    <a href="#" class="category-item__link">Барлық уақыттағы ең танымал</a>
+                    <a href="chapterBarlyk.html" class="category-item__link">Барлық уақыттағы ең танымал</a>
                   </li>
                 </ul>
               </nav>
@@ -538,17 +540,15 @@
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2F270908_1.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Kaspersky Secure Connection 5 устройств; 1-User 1 год (KL19870DEFS_LK_TD_ESD) (ESD)
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >10 990,52₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -562,7 +562,7 @@
                           <i 
                             class="home-product-item__like-icon-fill fas fa-heart "
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="10 990,52">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
             
@@ -582,7 +582,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">159 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -590,35 +590,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2Figrovoj_noutbuk_16_lenovo_legion_5_pro_712700h_16_512_rtx3060_6_d_82rf00qprk_267999_1zz.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Игровой ноутбук Lenovo Legion 5 Pro i7 12700H / 16ГБ / 512SSD / RTX3060 6ГБ / 16 / DOS / (82RF00QPRK)
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >566 990,67₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -631,7 +618,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="566 990,67">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -650,7 +637,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">187 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -658,35 +645,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2F262964_7q.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Ноутбук Lenovo IdeaPad Gaming 3 i5 11300H / 8ГБ / 512SSD / RTX3050 4ГБ / 15.6 / DOS
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >379 990,84₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -699,7 +673,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="379 990,84">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -718,7 +692,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">278 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -726,35 +700,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2Figrovoj_noutbuk_156_hp_victus_15_fa0019ci_512500h_8_512_rtx3050_265804_1.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Игровой ноутбук HP VICTUS 15-fa0019ci i5 12500H / 8ГБ / 512SSD / RTX3050 4ГБ / 15.6 / DOS
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >409 890,12₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -767,7 +728,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="409 890,12">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -786,7 +747,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">127 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -794,35 +755,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2Figrovoj_noutbuk_156_asus_tuf_gaming_f15_ci5_12500h_16_512_rtx3050_4_dfx507zc4_hn143_271400_1.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Игровой ноутбук Asus TUF Gaming F15 i5 12500H/ 16ГБ / 512SSD / RTX3050 4ГБ / 15.6 / DOS
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >389 990,20₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -835,7 +783,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="389 990,20">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -854,7 +802,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">218 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -862,35 +810,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2Figrovoj_noutbuk_16_asus_rog_strix_g16_ci5_13450hx_16_1000_rtx4060_8_dg614jv_n4193_271392_1.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Игровой ноутбук Asus ROG Strix G16 i5 13450HX / 16ГБ / 1000SSD / RTX4060 8ГБ / 16 / DOS
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >749 990,68₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -903,7 +838,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="749 990,68">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -922,7 +857,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">179 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -930,35 +865,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2Figrovoj_noutbuk_18_acer_predator_helios_18_ph18_71_nhqkrer002_275944_1.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Игровой ноутбук Acer Predator Helios 18 PH18-71 i9 13900HX / 16ГБ / 1000SSD / RTX4080 12ГБ / 18 / DOS
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >1 599 990,92₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -971,7 +893,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="1 599 990,92">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -990,7 +912,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">28 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -998,35 +920,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2Figrovoj_noutbuk_16_acer_predator_triton_300_se_pt316_51s_nhqgher_275941_1.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Игровой ноутбук Acer Predator Triton 300 SE PT316-51s i5 12500H / 16 / 512SSD / RTX3050Ti 4 / 16 / DOS
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >549 990,12₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -1039,7 +948,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="549 990,12">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -1058,7 +967,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">78 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -1066,35 +975,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2Figrovoj_noutbuk_16_asus_rog_strix_g16_ci5_13450hx_16_512_rtx4050_6_wg614ju_n3092w_270912_1.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Игровой ноутбук Asus ROG Strix G16 i5 13450HX/ 16ГБ / 512SSD / RTX4050 6ГБ / 16 / Win11
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >699 990,79₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -1107,7 +1003,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="452 332,82">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -1126,7 +1022,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">126 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -1134,35 +1030,22 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал </span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                   <div class="col l-2-4 m-4 c-6">
                     <a href="#" class="home-product-item">
                       <div
                         class="home-product-item__img"
-                        style="background-image: url(https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433);"
+                        style="background-image: url(https://www.technodom.kz/_next/image?url=https%3A%2F%2Fapi.technodom.kz%2Ff3%2Fapi%2Fv1%2Fimages%2F800%2F800%2Fkaspersky_standard_mobile_1_ustrojstvo_1_god_270907_1.jpg&w=1920&q=85);"
                       ></div>
                       <h4 class="home-product-item__name">
-                        13-inch MacBook Air with M2 chip - Midnight
+                        Kaspersky Standard Mobile 1 устройство 1 год (KL10480DAFS_LK_TD_ESD) (ESD)
                       </h4>
                       <div class="home-product-item__price">
-                        <span class="home-product-item__price-old"
-                          >587 445,23₸</span
-                        >
+                        
                         <span class="home-product-item__price-current"
-                          >452 332,82₸</span
+                          >3 990,99₸</span
                         >
                       </div>
                       <div class="home-product-item__action">
@@ -1175,7 +1058,7 @@
                           <i
                             class="home-product-item__like-icon-fill fas fa-heart"
                           ></i>
-                          <button class="addtocart" onclick="addcart()">
+                          <button class="addtocart" id="3 990,99">
                             <i class="fas fa-shopping-cart" style="color: #f63d30; display: flex;"></i>
                           </button>
                         </span>
@@ -1194,7 +1077,7 @@
                           ></i>
                           <i class="fas fa-star"></i>
                         </div>
-                        <div class="home-product-item__sold">88 Сатылды</div>
+                        <div class="home-product-item__sold">215 Сатылды</div>
                       </div>
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Сатушы:</span>
@@ -1202,18 +1085,7 @@
                           >Ерлан</span
                         >
                       </div>
-                      <div class="home-product-item__favourite">
-                        <i class="fas fa-check "></i>
-                        <span>Танымал</span>
-                      </div>
-                      <div class="home-product-item__sale-off">
-                        <span class="home-product-item__sale-off-percent"
-                          >23%</span
-                        >
-                        <span class="home-product-item__sale-off-label"
-                          >Тиім</span
-                        >
-                      </div>
+                      
                     </a>
                   </div>
                 </div>

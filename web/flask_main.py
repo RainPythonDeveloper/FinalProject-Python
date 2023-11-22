@@ -52,6 +52,16 @@ def chapterTan():
 @app.route("/chapterKop.html")
 def chapterKop():
     return render_template("chapterKop.html")
+
+
+@app.route("/chapterAY.html")
+def chapterAY():
+    return render_template("chapterAY.html")
+
+
+@app.route("/chapterBarlyk.html")
+def chapterBarlyk():
+    return render_template("chapterBarlyk.html")
 # @app.route("/project-page.html")
 # def projectPage():
 #     return render_template("project-page.html")

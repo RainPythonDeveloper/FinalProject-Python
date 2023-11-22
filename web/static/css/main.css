@@ -1376,3 +1376,10 @@ i.home-product-item__like-icon-fill {
   text-align: center;
   color: #737373;
 }
+
+.total {
+  float: left;
+  margin-left: 20px;
+  font-size: 25px;
+  color: #fb9086;
+}

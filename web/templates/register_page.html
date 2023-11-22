@@ -81,16 +81,16 @@
                     <li class="header__notify-item header__notify-item--viewed">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://img.tickid.vn/photos/resized/200x120/83-1574758841-myphamohui-lgvina.png"
+                          src="https://new.technodom.kz/under/black-friday-td-2023/hero-logo-desktop.png"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю должен быть автор уведомления</span
+                            >Black Friday Распродажа по-крупному! Скидки до <b>-60%</b></span
                           >
                           <span class="header__notify-description"
-                            >Тут содержимое уведомления</span
+                            >15.11-27.11</span
                           >
                         </div>
                       </a>
@@ -98,17 +98,17 @@
                     <li class="header__notify-item">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://img.tickid.vn/photos/resized/200x120/83-1580794352-myphamohui-lgvina.png"
+                          src="https://cs11.livemaster.ru/storage/topicavatar/600x450/97/5e/e7255758eb1dabe5e9be0423f911b6f54641du.jpg?h=PNajulFsui3uS65lU9DI_g"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю должен быть автор уведомления
+                            >11.11 Всемирный день шопинга! Не упусти шанс купить по хорошей цене! <b>Скидки до 90%</b>
                            </span
                           >
                           <span class="header__notify-description"
-                            >Тут содержимое уведомления
+                            >11.11
                             </span
                           >
                         </div>
@@ -117,16 +117,16 @@
                     <li class="header__notify-item">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://img.tickid.vn/photos/resized/200x120/83-1576046204-myphamohui-lgvina.png"
+                          src="https://img.freepik.com/free-psd/3d-sales-discount-price-tag-for-composition-10-percent_314999-2110.jpg"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю можно сделать содержимое уведомления</span
+                            >Мы дарим вам купон на <b>-10%</b> за любую первую покупку!</span
                           >
                           <span class="header__notify-description"
-                            >А тут до какого срока это длится по типу купона 11-13/12/2019</span
+                            >11-13/12/2023</span
                           >
                         </div>
                       </a>
@@ -138,7 +138,7 @@
                 </div>
               </li>
               <li class="header__navbar-item">
-                <a href="" class="header__navbar-item-link">
+                <a href="About us.html" class="header__navbar-item-link">
                   <i class="header__navbar-icon far fa-question-circle"></i>
 
                   Біз туралы
@@ -152,18 +152,21 @@
               <li class="header__navbar-item header__navbar-item--strong">
                 Đăng Nhập
               </li> -->
+              {% if session.authenticated %}
+              
               <li class="header__navbar-item header__navbar-user">
                 <img
                   src="{{ url_for('static', filename='img/user_avatar.png') }}"
                   alt=""
                   class="header__navbar-user-img"
                 />
+                <!-- <li><a class="header__navbar-user-name" href="{{ url_for('user_page', user_id=session.uid)}}">{{session.username | capitalize}}</a></li> -->
                 <span class="header__navbar-user-name">
-                  Nurbek777
+                  {{session.username | capitalize}}
                 </span>
                 <ul class="header__navbar-user-menu">
                   <li class="header__navbar-user-item">
-                    <a href="">Менің профилім</a>
+                    <a href="{{ url_for('user_page', user_id=session.uid)}}">Менің профилім</a>
                   </li>
                   <li class="header__navbar-user-item">
                     <a href="">Мекенжай</a>
@@ -171,19 +174,17 @@
                   <li class="header__navbar-user-item">
                     <a href="">Менің тапсырыстарым</a>
                   </li>
-                  <li class="header__navbar-user-item">
-                    <a href="./register">Регистрация</a>
-                  </li>
-                  <li class="header__navbar-user-item">
-                    <a href="./login">Войти</a>
-                  </li>
                   <li
                     class="header__navbar-user-item header__navbar-user-item--separate"
                   >
-                    <a href="" style="color: red;">Шығу</a>
+                  <a class="nav-link scrollto" href="{{ url_for('logout')}}" style="color: red;">Шығу</a>
                   </li>
                 </ul>
               </li>
+              {% else %}
+              <li class="header__navbar-item header__navbar-user"><a href="./login" class="header__navbar-item header__navbar-user" style="text-decoration: none;">Войти</a></li>
+              <li class="header__navbar-item header__navbar-user"><a href="./register" class="header__navbar-item header__navbar-user" style="text-decoration: none;">Регистрация</a></li>
+              {% endif %}
             </ul>
           </nav>
 
@@ -411,17 +412,18 @@
       padding: 0;
       margin: 0;
   }
-  .footer
+  /* .footer
   {
       margin-top: 372px;
-  }
+  } */
   .container {
         background-color: #ffffff;
         padding: 20px;
         border-radius: 10px;
         width: 600px;
         margin: auto;
-        margin-top: 50px;
+        margin-top: 20px;
+        margin-bottom: 40px;
     }
 
     label {

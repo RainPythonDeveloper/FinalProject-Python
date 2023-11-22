@@ -81,16 +81,16 @@
                     <li class="header__notify-item header__notify-item--viewed">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433"
+                          src="https://new.technodom.kz/under/black-friday-td-2023/hero-logo-desktop.png"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю должен быть автор уведомления</span
+                            >Black Friday Распродажа по-крупному! Скидки до <b>-60%</b></span
                           >
                           <span class="header__notify-description"
-                            >Тут содержимое уведомления</span
+                            >15.11-27.11</span
                           >
                         </div>
                       </a>
@@ -98,17 +98,17 @@
                     <li class="header__notify-item">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433"
+                          src="https://cs11.livemaster.ru/storage/topicavatar/600x450/97/5e/e7255758eb1dabe5e9be0423f911b6f54641du.jpg?h=PNajulFsui3uS65lU9DI_g"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю должен быть автор уведомления
+                            >11.11 Всемирный день шопинга! Не упусти шанс купить по хорошей цене! <b>Скидки до 90%</b>
                            </span
                           >
                           <span class="header__notify-description"
-                            >Тут содержимое уведомления
+                            >11.11
                             </span
                           >
                         </div>
@@ -117,16 +117,16 @@
                     <li class="header__notify-item">
                       <a href="" class="header__notify-link">
                         <img
-                          src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1684518479433"
+                          src="https://img.freepik.com/free-psd/3d-sales-discount-price-tag-for-composition-10-percent_314999-2110.jpg"
                           alt=""
                           class="header__notify-img"
                         />
                         <div class="header__notify-info">
                           <span class="header__notify-name"
-                            >Здесь думаю можно сделать содержимое уведомления</span
+                            >Мы дарим вам купон на <b>-10%</b> за любую первую покупку!</span
                           >
                           <span class="header__notify-description"
-                            >А тут до какого срока это длится по типу купона 11-13/12/2019</span
+                            >11-13/12/2023</span
                           >
                         </div>
                       </a>
@@ -152,18 +152,21 @@
               <li class="header__navbar-item header__navbar-item--strong">
                 Đăng Nhập
               </li> -->
+              {% if session.authenticated %}
+              
               <li class="header__navbar-item header__navbar-user">
                 <img
                   src="{{ url_for('static', filename='img/user_avatar.png') }}"
                   alt=""
                   class="header__navbar-user-img"
                 />
+                <!-- <li><a class="header__navbar-user-name" href="{{ url_for('user_page', user_id=session.uid)}}">{{session.username | capitalize}}</a></li> -->
                 <span class="header__navbar-user-name">
-                  Nurbek777
+                  {{session.username | capitalize}}
                 </span>
                 <ul class="header__navbar-user-menu">
                   <li class="header__navbar-user-item">
-                    <a href="">Менің профилім</a>
+                    <a href="{{ url_for('user_page', user_id=session.uid)}}">Менің профилім</a>
                   </li>
                   <li class="header__navbar-user-item">
                     <a href="">Мекенжай</a>
@@ -171,19 +174,17 @@
                   <li class="header__navbar-user-item">
                     <a href="">Менің тапсырыстарым</a>
                   </li>
-                  <li class="header__navbar-user-item">
-                    <a href="./register">Регистрация</a>
-                  </li>
-                  <li class="header__navbar-user-item">
-                    <a href="./login">Войти</a>
-                  </li>
                   <li
                     class="header__navbar-user-item header__navbar-user-item--separate"
                   >
-                    <a href="" style="color: red;">Шығу</a>
+                  <a class="nav-link scrollto" href="{{ url_for('logout')}}" style="color: red;">Шығу</a>
                   </li>
                 </ul>
               </li>
+              {% else %}
+              <li class="header__navbar-item header__navbar-user"><a href="./login" class="header__navbar-item header__navbar-user" style="text-decoration: none;">Войти</a></li>
+              <li class="header__navbar-item header__navbar-user"><a href="./register" class="header__navbar-item header__navbar-user" style="text-decoration: none;">Регистрация</a></li>
+              {% endif %}
             </ul>
           </nav>
 
@@ -264,18 +265,7 @@
       <main>
         <div>
             <p class="text" id="txt" style="color:#f53e2d">
-              Добро пожаловать в наш онлайн магазин!
-              
-              Мы - команда энтузиастов, создавших это пространство для вас. Наша миссия - сделать ваш шопинг надежным и приятным опытом. Почему нам можно доверять:
-              
-              Качество: Тщательно отбираем товары от лучших брендов.
-              Прозрачность: Без скрытых условий, честные отношения.
-              Безопасность: Ваши данные под надежной защитой.
-              Удовлетворение: Готовы решать любые вопросы для вашего комфорта.
-              Выбрав нас, вы не просто покупаете, а становитесь частью нашего дружного сообщества. Доверьтесь нам, и мы сделаем ваше шопинг-путешествие незабываемым!
-              
-              С любовью,
-              ShopeeKZ</p>
+              Біздің интернет онлайн қызметіміз қош келдіңіз! Біз сіздер үшін осы кеңістікті жасаған энтузиастар командасымыз. Біздің миссиямыз - сіздің сатып алу тәжірибеңізді сенімді және жағымды ету. Неліктен бізге сенуге болады: Сапа: Біз ең жақсы брендтердің өнімдерін мұқият таңдаймыз. Ашықтық: Жасырын шарттар жоқ, адал қарым-қатынас. Қауіпсіздік: деректеріңіз қауіпсіз қорғалған. Қанағаттану: ыңғайлы болу үшін кез келген мәселені шешуге дайын. Бізді таңдау арқылы сіз жай ғана сатып алмайсыз, сонымен қатар біздің достық қауымдастықтың бір бөлігі боласыз. Бізге сеніңіз, біз сіздің сауда сапарыңызды ұмытылмастай етеміз! Сүйіспеншілікпен, ShopeeKZ</p>
         </div>
       </main>
       
@@ -386,30 +376,24 @@
           </div>
         </div>
       </footer>
-      <script src="./assets/js/script.js"></script>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
      
     </div>
   </body>
 </html>
 
 <style>
-    body
+    /* body
     {
         padding: 0;
         margin: 0;
     }
     .text
     {
-        
-        justify-content: center;
-        align-items: center;
-        padding-left: 60px;
-        padding-right: 60px;
-        line-height: 1.5;
-        display: block;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
+      color: #f53e2d;
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: justify;
         
     }
     #txt
@@ -426,12 +410,28 @@
         margin-top: 372px;
     }
     main {
-      width: 1200px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 200px;
-    margin-left: 200px;
-   
+      max-width: 800px;
+      margin: 50px auto;
+    } */
+body {
+    margin: 0;
+    padding: 0;
 }
 
+main {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.text {
+    color: #f53e2d;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+#txt {
+    font-weight: 600;
+    font-size: 20px;
+}
 </style>
